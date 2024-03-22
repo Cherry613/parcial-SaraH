@@ -27,10 +27,8 @@ export const Search: FunctionComponent = () => {
         
         //data->meanings->definitions
         data.map((elem)=> {
-            diccionario.push(elem.meanings.definitions);
-        })
-        
-        
+           setResultado(elem.meanings.definitions);
+        })    
     }
 
 
@@ -38,7 +36,7 @@ export const Search: FunctionComponent = () => {
         <div>
             <div class ="caja">
                 <div class = "buscar">
-                    <input type="text" placeholder="Type a word" onInput={(w) => setWord(w.currentTarget.value)} onBlur={() => hayPalabra()}></input>
+                    <input type="text" placeholder="Type a word" onInput={(w) => setWord(w.currentTarget.value)} onBlur={() => hayPalabra()}/>
                     <button type="submit" disabled={error !== ""} onClick={()=>dictionary(word)}>Search</button>                
                 </div>
                 <div>
