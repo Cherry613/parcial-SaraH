@@ -29,14 +29,12 @@ export const Search: FunctionComponent = () => {
 
     return(
         <div class ="caja">
-            <div>
+            <div class = "buscar">
                 <input type="text" placeholder="Type a word" onInput={(w) => setWord(w.currentTarget.value)} onBlur={() => hayPalabra()}></input>
                 <button type="submit">Search</button>
                 {error !== "" && <div>{error}</div>}
             </div>
-            <div>
-                <Componente props={}
-            </div>
+
         </div>
     )
 
