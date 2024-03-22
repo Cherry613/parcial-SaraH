@@ -32,7 +32,9 @@ export const Search: FunctionComponent = () => {
             <div class = "buscar">
                 <input type="text" placeholder="Type a word" onInput={(w) => setWord(w.currentTarget.value)} onBlur={() => hayPalabra()}></input>
                 <button type="submit">Search</button>
-                {error !== "" && <div>{error}</div>}
+            </div>
+            <div>
+            {error !== "" && <div class="error">{error}</div>}
             </div>
 
         </div>

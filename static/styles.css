@@ -22,8 +22,13 @@ h1{
   color: #6b7280;
   text-align: center;
 }
+
 p{
   text-align: center;
+}
+.error{
+  color: red;
+  font-size: 0.8rem;
 }
 
 strong{
@@ -52,12 +57,15 @@ body{
 button{
   background-color: #6b7280;
   color: white;
+  border: none;
   padding: 0.5rem;
   border-radius: 0.25rem;
+
 }
 input{
   padding: 0.5rem;
   border-radius: 0.25rem;
+  border: 1px solid #6b7280;
 }
 
 .buscar{
