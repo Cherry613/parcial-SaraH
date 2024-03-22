@@ -1,6 +1,6 @@
 import { useState } from "preact/hooks";
 import { FunctionComponent } from "preact";
-import {Diccionario, Resultado} from "../types.ts"
+import { Resultado} from "../types.ts"
 
 
 export const Search: FunctionComponent = () => {
