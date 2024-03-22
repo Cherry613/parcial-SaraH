@@ -1,12 +1,15 @@
 import { useState } from "preact/hooks";
 import { FunctionComponent } from "preact";
+import {Diccionario, Resultado} from "../types.ts"
 
 
 export const Search: FunctionComponent = () => {
     
     const [word, setWord] = useState<string>("");
     const [error, setError] = useState<string>("");
+    const [resultado, setResultado] = useState<Resultado>();
 
+    const diccionario: Resultado[] = [];
 
     //si word esta vacio -> error
     const hayPalabra = () => {
@@ -16,28 +19,35 @@ export const Search: FunctionComponent = () => {
     }
 
     //buscar en la api
-    const dictionary = async () => {
+    const dictionary = async (p) => {
         const url = "https://api.dictionaryapi.dev/api/v2/entries/en_US/";
 
-        const response = await fetch(url + word);
+        const response = await fetch(url + p);
         const data = await response.json();
-        return data;
+        
+        //data->meanings->definitions
+        data.map((elem)=> {
+            diccionario.push(elem.meanings.definitions);
+        })
+        
+        
     }
 
 
-    
-
     return(
-        <div class ="caja">
-            <div class = "buscar">
-                <input type="text" placeholder="Type a word" onInput={(w) => setWord(w.currentTarget.value)} onBlur={() => hayPalabra()}></input>
-                <button type="submit">Search</button>
+        <div>
+            <div class ="caja">
+                <div class = "buscar">
+                    <input type="text" placeholder="Type a word" onInput={(w) => setWord(w.currentTarget.value)} onBlur={() => hayPalabra()}></input>
+                    <button type="submit" disabled={error !== ""} onClick={()=>dictionary(word)}>Search</button>                
+                </div>
+                <div>
+                {error !== "" && <div class="error">{error}</div>}
+                </div>
             </div>
-            <div>
-            {error !== "" && <div class="error">{error}</div>}
+            <div class ="caja">
+                {diccionario.length !== 0 && <div>{word}</div>}
             </div>
-
         </div>
     )
-
 }
