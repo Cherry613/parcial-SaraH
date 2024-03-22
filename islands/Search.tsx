@@ -1,6 +1,6 @@
 import { useState } from "preact/hooks";
 import { FunctionComponent } from "preact";
-import { Resultado} from "../types.ts"
+import { Diccionario, Resultado} from "../types.ts"
 
 
 export const Search: FunctionComponent = () => {
@@ -8,8 +8,9 @@ export const Search: FunctionComponent = () => {
     const [word, setWord] = useState<string>("");
     const [error, setError] = useState<string>("");
     const [resultado, setResultado] = useState<Resultado>();
+    const [diccionario, setDiccionario] = useState<Diccionario>();
 
-    const diccionario: Resultado[] = [];
+
 
     //si word esta vacio -> error
     const hayPalabra = () => {
@@ -26,10 +27,11 @@ export const Search: FunctionComponent = () => {
         const data = await response.json();
         
         //data->meanings->definitions
-        data.map((elem)=> {
-           setResultado(elem.meanings.definitions);
-        })    
+        const resultados = data.map((elem)=> {setResultado(elem.meanings.definitions)})  
+        
+        setDiccionario(resultados);
     }
+
 
 
     return(
@@ -44,7 +46,8 @@ export const Search: FunctionComponent = () => {
                 </div>
             </div>
             <div class ="caja">
-                {diccionario.length !== 0 && <div>{word}</div>}
+                {<div>{diccionario}</div>}
+                {}
             </div>
         </div>
     )
