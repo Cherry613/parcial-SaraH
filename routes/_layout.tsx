@@ -5,8 +5,11 @@ const layout = (props: PageProps) => {
 
     return(
         <div>
-            <a href="/wordcsr">Client Side</a>
-            <a href="/wordssr">Server Side</a>
+            <div class="fondo-enlaces">
+                <a href="/wordcsr" class="enlaces">Client Side</a>
+                <a href="/wordssr" class="enlaces">Server Side</a>
+            </div>
+            
             <h1>My Dictionary</h1>
             <Component/>
         </div>
